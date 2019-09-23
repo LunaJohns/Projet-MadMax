@@ -12,7 +12,7 @@ public class CAD
 	{
 		
 	}
-	private static String URL = "jdbc:mysql://localhost/test?autoReconnect=true&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";;
+	private static String URL = "jdbc:mysql://localhost/madmax?autoReconnect=true&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";;
 	private static String root = "root";
 	private static String PASSWORD = "";
 	private String QuerySelect = "";
@@ -25,18 +25,19 @@ public class CAD
 		    connexion = DriverManager.getConnection( URL, root, PASSWORD );
 		    
 		    Statement statement = connexion.createStatement();
-		    
+		 
 		    //Requete Select
 		    QuerySelect = requete;
 		    ResultSet resultat = statement.executeQuery( QuerySelect );
 		    
+		    
 		    while (resultat.next())
 		    {
 		    	int idUtilisateur = resultat.getInt("id");
-		    	String nom = resultat.getString("nom");
-		    	String prenom = resultat.getString("prenom");
+		    	String Identificant = resultat.getString("Identifiant");
+		    	String Mdp = resultat.getString("Mdp");
 		    	
-		    	System.out.println("id de l'utilisateur : " + idUtilisateur + " nom de l'utilisateur : " + nom + " prénom de l'utilisateur : " + prenom);
+		    	System.out.println("id de l'utilisateur : " + idUtilisateur + " Identifiant : " + Identificant + " mdp : " + Mdp);
 		    	
 		    }
 		    
