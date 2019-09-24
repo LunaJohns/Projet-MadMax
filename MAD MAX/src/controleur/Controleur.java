@@ -13,7 +13,7 @@ public class Controleur
 		test.Connexion("SELECT id, Identifiant, Mdp FROM utilisateurs;");
 		
 		Decryptage test2 = new Decryptage();
-		test2.genererListeCle();
+		test2.genererListeCle(0);
 
 	}
 
