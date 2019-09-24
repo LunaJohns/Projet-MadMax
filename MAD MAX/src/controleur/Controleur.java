@@ -1,8 +1,9 @@
-package Controleur;
+package controleur;
 
-import Model.CAD;;
+import model.CAD;
+import model.Decryptage;;
 
-public class Main 
+public class Controleur 
 {
 
 	public static void main(String[] args) 
@@ -10,6 +11,9 @@ public class Main
 		// TODO Auto-generated method stub
 		CAD test = new CAD();
 		test.Connexion("SELECT id, Identifiant, Mdp FROM utilisateurs;");
+		
+		Decryptage test2 = new Decryptage();
+		test2.genererListeCle();
 
 	}
 
