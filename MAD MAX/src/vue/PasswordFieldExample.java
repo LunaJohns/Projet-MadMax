@@ -32,7 +32,7 @@ public class PasswordFieldExample {
 	     
 	     JLabel label4=new JLabel("Password:"); 
 	     label4.setBounds(380,350, 80,30);  
-	     
+	     //F?DEJZOJNFO
 	     JLabel label5 = new JLabel("Page de connexion: "); 
 	     label5.setFont(new Font("Georgia", Font.PLAIN, 100));
 	     label5.setForeground(new Color(100, 0, 0));
