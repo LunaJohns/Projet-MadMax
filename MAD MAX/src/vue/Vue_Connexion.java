@@ -39,6 +39,9 @@ public class Vue_Connexion {
 	     label5.setForeground(new Color(100, 0, 0));
 	     label5.setBounds(180,100,1000,175); 
 	     
+	     JLabel label6=new JLabel("Password:"); 
+	     label6.setBounds(380,350, 80,30); 
+	     
 	     JButton b = new JButton("Login");  
 	     b.setBounds(570,400, 80,30);
 	     
@@ -48,6 +51,7 @@ public class Vue_Connexion {
 	     f.add(label2); 
 	     f.add(label4); 
 	     f.add(label5);
+	     f.add(label6);
 	     
 	     f.add(b); 
 	     f.add(text);  
@@ -61,7 +65,7 @@ public class Vue_Connexion {
 		     {       
 			     String data = "Username " + text.getText();  
 			     data += ", Password: " + new String(value.getPassword());   
-			     label2.setText(data);          
+			     label6.setText(data);          
 		     } 
 	     });
 	}
