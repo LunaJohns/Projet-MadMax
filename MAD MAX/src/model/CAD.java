@@ -10,48 +10,68 @@ public class CAD
 {
 	public CAD()
 	{
-		
+		this.etatConnexion = false;
 	}
+	
 	private static String URL = "jdbc:mysql://localhost/madmax?autoReconnect=true&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";;
 	private static String root = "root";
 	private static String PASSWORD = "";
-	private String QuerySelect = "";
-	Connection connexion = null;
+	private Connection connexion;
+	private Statement statement;
+	private ResultSet resultat;
+	public boolean etatConnexion;
 	
 	
-	public void Connexion(String requete)
+	public boolean Connexion()
 	{
-		try {
+		try 
+		{
 		    connexion = DriverManager.getConnection( URL, root, PASSWORD );
-		    
-		    Statement statement = connexion.createStatement();
-		 
-		    //Requete Select
-		    QuerySelect = requete;
-		    ResultSet resultat = statement.executeQuery( QuerySelect );
+		    System.out.println("Ouverture de la connexion");
+		    statement = connexion.createStatement();
+		    etatConnexion = true;
+		} 
+		catch ( SQLException e )
+		{
+			System.out.println("Impossible d'ouvrir une connexion, message d'erreur : " + e);
+		} 
+	    return etatConnexion;
+	}
+	
+	public void Fermeture()
+	{
+        try 
+    	{
+        	System.out.println("Fermeture de la connexion");
+            /* Fermeture de la connexion */
+            connexion.close();
+        } 
+    	catch ( SQLException e ) 
+    	{
+    		System.out.println("Impossible de fermer la connexion, message d'erreur : " + e);
+        }
+	}
+	
+	public void executerRequete(String requete)
+	{
+		try 
+		{
+		    //Execution de la requete
+		    this.resultat = statement.executeQuery( requete );
 		    
 		    
 		    while (resultat.next())
 		    {
-		    	int idUtilisateur = resultat.getInt("id");
-		    	String Identificant = resultat.getString("Identifiant");
-		    	String Mdp = resultat.getString("Mdp");
-		    	
-		    	System.out.println("id de l'utilisateur : " + idUtilisateur + " Identifiant : " + Identificant + " mdp : " + Mdp);
+		    	int nombreOccurance = resultat.getInt("COUNT(*)");
+		    	System.out.println("Nombre d'occurence trouvé : " + nombreOccurance);
 		    	
 		    }
-		    
-		} catch ( SQLException e ) {
-		    /* Gérer les éventuelles erreurs ici */
-		} finally {
-		    if ( connexion != null )
-		        try {
-		            /* Fermeture de la connexion */
-		            connexion.close();
-		        } catch ( SQLException ignore ) {
-		            /* Si une erreur survient lors de la fermeture, il suffit de l'ignorer. */
-		        }
+		} 
+		catch ( SQLException e ) 
+		{
+			System.out.println("Impossible d'executer le requete, message d'erreur : " + e);
 		}
+		
 	}
 	
 }

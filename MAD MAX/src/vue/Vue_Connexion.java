@@ -6,8 +6,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.*;  
 
-//Page de connexion
-
 public class Vue_Connexion { 
 	
 	private String id, pwd; 
@@ -35,7 +33,7 @@ public class Vue_Connexion {
 	     
 	     JLabel label4=new JLabel("Password:"); 
 	     label4.setBounds(380,350, 80,30);  
-	     //F?DEJZOJNFO
+
 	     JLabel label5 = new JLabel("Page de connexion: "); 
 	     label5.setFont(new Font("Georgia", Font.PLAIN, 100));
 	     label5.setForeground(new Color(100, 0, 0));
@@ -57,14 +55,15 @@ public class Vue_Connexion {
 	     f.setLayout(null);    
 	     f.setVisible(true);
 	                
-	                /* b.addActionListener(new ActionListener() {  
-	                public void actionPerformed(ActionEvent e) {       
-	                   String data = "Username " + text.getText();  
-	                   data += ", Password: "   
-	                   + new String(value.getPassword());   
-	                   label.setText(data);          
-	                } 
-	             }); */  
+	     b.addActionListener(new ActionListener() 
+	     {  
+		     public void actionPerformed(ActionEvent e) 
+		     {       
+			     String data = "Username " + text.getText();  
+			     data += ", Password: " + new String(value.getPassword());   
+			     label2.setText(data);          
+		     } 
+	     });
 	}
 	
 	public void Set_Id(String id) {

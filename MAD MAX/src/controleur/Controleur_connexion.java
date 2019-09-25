@@ -2,13 +2,12 @@ package controleur;
 
 import vue.Vue_Connexion;
 
-//Lancement de la page de connexion
-
 public class Controleur_connexion {
 
-		public static void main(String[] args) 
+		public void lancementConnexion()
 		{			
-			new Vue_Connexion();
+			Vue_Connexion fenetreConnexion = new Vue_Connexion();
 		}
+		
 
 }
