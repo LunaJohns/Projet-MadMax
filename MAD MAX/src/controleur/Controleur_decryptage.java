@@ -2,35 +2,31 @@ package controleur;
 
 import model.CAD;
 import model.Decryptage;
-import model.Map_P;;
+import model.MapDictionnaire;
+
 
 public class Controleur_decryptage 
 {
 
 	public void lancementDecryptage()
 	{
-		//Base de données
+		//Initialisation des composants
 		CAD cad = new CAD();
-		Map_P Map_p = new Map_P();
 		
+		MapDictionnaire Map_dic = new MapDictionnaire();
+		Decryptage decryptage = new Decryptage();
+		
+		//Connexion
 		boolean etatConnexion = cad.Connexion();
-		String requete = Map_p.requeteVerifierUtilisateur("utilisateur 1", "0");
 		
 		if (etatConnexion == true)
 		{
-			cad.executerRequete(requete);
+			decryptage.genererListeCle(0,"", Map_dic, cad);
+	
 			cad.Fermeture();
 		}
 		
-		/*
-		Decryptage test2 = new Decryptage();
-		test2.genererListeCle(0);
 		
-		int[] t1 = {122,122,122,122};
-		//Caractère
-		String resultat2 = test2.decrypterCaractere(t1, "test");
-		System.out.println(resultat2);
-		*/
 	}
 
 }

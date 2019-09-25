@@ -3,8 +3,8 @@ package model;
 public class Decryptage 
 {
 	
-	public int[] Cle;
-	public Boolean cleTrouve = false;
+	private int[] Cle;
+	private Boolean cleTrouve = false;
 	
 	public Decryptage()
 	{
@@ -18,7 +18,7 @@ public class Decryptage
 		
 	}
 	
-	public void genererListeCle(int index)
+	public void genererListeCle(int index, String chaineCryptee, MapDictionnaire Map_dic, CAD cad)
 	{
 		if (index < Cle.length && cleTrouve != true)
 		{
@@ -27,15 +27,19 @@ public class Decryptage
 				
 				Cle[index] = x;
 				
-				String chaineDecrypter = decrypterCaractere(Cle,"	");
-				if (chaineDecrypter.equals("test"))
+				String chaineDecrypter = decrypterCaractere(Cle,chaineCryptee);
+				
+				//Verification
+				String requete = Map_dic.requeteVerifierMot(chaineDecrypter);
+				boolean occurranceTrouve = cad.executerRequete(requete);
+				
+				if (occurranceTrouve == true)
 				{
 					System.out.print("Clé trouvé : ");
-					cleTrouve = true;
 					toString(Cle);
-					
+					cleTrouve = true;
 				}
-				genererListeCle(index + 1);
+				genererListeCle(index + 1,chaineCryptee, Map_dic, cad);
 				
 			}
 		}
@@ -145,11 +149,10 @@ public class Decryptage
 		String chaineDecrypter = "";
 		char tmp;
 		for(int i = 0; i < chaineCrypter.length(); i++) {
-			//On execcute le XOR avec key.i et toDecrypt.i
+			//On execute le XOR
 			tmp = (char) (cleDecimal[i%cleDecimal.length] ^ chaineCrypter.charAt(i));
 			chaineDecrypter = new StringBuffer().append(chaineDecrypter).append(tmp).toString(); 
 		}
-		//System.out.println("\nMessage décrypté (méthode caractère) : "+ chaineDecrypter);
 		return chaineDecrypter;
 	}
 	

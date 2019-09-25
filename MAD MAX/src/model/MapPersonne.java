@@ -1,10 +1,10 @@
 package model;
 
-public class Map_P 
+public class MapPersonne 
 {	
 	private String requete;
 	
-	public Map_P()
+	public MapPersonne()
 	{
 		
 	}

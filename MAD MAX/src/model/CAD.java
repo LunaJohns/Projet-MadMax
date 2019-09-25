@@ -19,7 +19,8 @@ public class CAD
 	private Connection connexion;
 	private Statement statement;
 	private ResultSet resultat;
-	public boolean etatConnexion;
+	private boolean etatConnexion;
+	private boolean occurranceTrouve = false;
 	
 	
 	public boolean Connexion()
@@ -52,7 +53,7 @@ public class CAD
         }
 	}
 	
-	public void executerRequete(String requete)
+	public boolean executerRequete(String requete)
 	{
 		try 
 		{
@@ -63,14 +64,19 @@ public class CAD
 		    while (resultat.next())
 		    {
 		    	int nombreOccurance = resultat.getInt("COUNT(*)");
-		    	System.out.println("Nombre d'occurence trouvé : " + nombreOccurance);
+		    	if (nombreOccurance > 0)
+		    	{
+		    		occurranceTrouve = true;
+		    	}
 		    	
 		    }
+		    
 		} 
 		catch ( SQLException e ) 
 		{
 			System.out.println("Impossible d'executer le requete, message d'erreur : " + e);
 		}
+		return occurranceTrouve;
 		
 	}
 	
