@@ -17,43 +17,40 @@ public class PasswordFieldExample {
 		panel.setBounds(0, 0, 1280, 700); 
 		panel.setBackground(Color.LIGHT_GRAY);
 		panel.setLayout(new BorderLayout(10, 10));
-		
-		String lyrics = "PAGE DE CONNEXION";
-		JLabel label1 = new JLabel(lyrics);
-		label1.setFont(new Font("Georgia", Font.PLAIN, 50)); 
-		label1.setForeground(new Color(100, 0, 0)); 
-		
-		panel.add(label1, BorderLayout.CENTER); 
-		panel.setBorder(BorderFactory.createEmptyBorder(0, 380, 400, 0));
-		
+				
 	     final JLabel label2 = new JLabel();            
-	     label2.setBounds(20,150, 200,50);  
-	     
-	     final JPasswordField value = new JPasswordField();   
-	     value.setBounds(100,75,100,30);  
-	     
-	     JLabel label3=new JLabel("Username:");    
-	     label3.setBounds(20,20, 80,30);  
-	     
-	     JLabel label4=new JLabel("Password:"); 
-	     label4.setBounds(20,75, 80,30);  
-	     
-	     JLabel label5 = new JLabel("Page de connexion: "); 
-	     label5.setBounds(20,75, 80,30); 
-	     
-	     JButton b = new JButton("Login");  
-	     b.setBounds(100,120, 80,30);
+	     label2.setBounds(480,300, 400,30);  
 	     
 	     final JTextField text = new JTextField();  
-	     text.setBounds(100,20, 100,30);  
+	     text.setBounds(480,300, 300,30);  
+	     
+	     final JPasswordField value = new JPasswordField();   
+	     value.setBounds(480,350,300,30);  
+	     
+	     JLabel label3=new JLabel("Username:");    
+	     label3.setBounds(380,300, 80,30);  
+	     
+	     JLabel label4=new JLabel("Password:"); 
+	     label4.setBounds(380,350, 80,30);  
+	     
+	     JLabel label5 = new JLabel("Page de connexion: "); 
+	     label5.setFont(new Font("Georgia", Font.PLAIN, 100));
+	     label5.setForeground(new Color(100, 0, 0));
+	     label5.setBounds(180,100,1000,175); 
+	     
+	     JButton b = new JButton("Login");  
+	     b.setBounds(570,400, 80,30);
+	     
 	     
 	     f.add(value); 
 	     f.add(label3); 
 	     f.add(label2); 
 	     f.add(label4); 
+	     f.add(label5);
+	     
 	     f.add(b); 
 	     f.add(text);  
-	     f.setSize(500, 300);    
+	     f.setSize(1500, 680);    
 	     f.setLayout(null);    
 	     f.setVisible(true);
 	                
