@@ -7,6 +7,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+
 public class ManipulationFichier
 {
 	String data = new String();
@@ -64,5 +67,22 @@ public class ManipulationFichier
 		
 		out.write("Abdelrahmane et Java ca fait 1");
 		out.close();
+	}
+	
+	public void ouvrirExplorateur()
+	 {
+		 JFileChooser fc = new JFileChooser();
+		 fc.setCurrentDirectory(new File("/User"));
+		 
+		 int result = fc.showOpenDialog(new JFrame());
+		 
+		 if (result == JFileChooser.APPROVE_OPTION)
+		 {
+			 File selectedFile = fc.getSelectedFile();
+			 
+			 String path = selectedFile.getAbsolutePath();
+			 
+			 System.out.println(path);
+		 }
 	}
 }
