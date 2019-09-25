@@ -1,15 +1,18 @@
 package vue;
-import javax.swing.*;
 
+import javax.swing.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.*;  
-public class PasswordFieldExample { 
+
+//Page de connexion
+
+public class Vue_Connexion { 
 	
 	private String id, pwd; 
 	
-	public PasswordFieldExample() {
+	public Vue_Connexion() {
 		JFrame f=new JFrame("CONNEXION");    
 		
 		JPanel panel = new JPanel(); 
@@ -78,9 +81,5 @@ public class PasswordFieldExample {
 	public String Get_Pwd() {
 		return this.pwd; 
 	}
-
-    public static void main(String[] args) {    
-         
-       new PasswordFieldExample(); 
-}  
+ 
 } 

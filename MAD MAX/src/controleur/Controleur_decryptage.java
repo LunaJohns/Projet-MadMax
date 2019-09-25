@@ -3,7 +3,9 @@ package controleur;
 import model.CAD;
 import model.Decryptage;;
 
-public class Controleur 
+//Lancement de la page de décryptage + lancement du cryptage
+
+public class Controleur_decryptage 
 {
 
 	public static void main(String[] args) 
