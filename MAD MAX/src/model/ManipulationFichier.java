@@ -1,15 +1,24 @@
 package model;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
-public class LectureFichier
+public class ManipulationFichier
 {
-	public static void lectureFichier(String data, String key) throws IOException
+	String data = new String();
+	
+	public void lectureFichier() throws IOException
 	{
 		BufferedReader in = null;
+		File f = new File(data);
+		int i;
+		
+		System.out.println(f.getAbsolutePath());
+		System.out.println();
 		
 		try
 		{
@@ -29,17 +38,16 @@ public class LectureFichier
 			e.printStackTrace();
 		}
 		
-		char tab[] = new char[data.length()];
-		
 		System.out.println (data);
 		
-		for(int i=0;i<=data.length()-1;i++)
+		for(i=0;i<=data.length()-1;i++)
 		{
 			System.out.print(data.charAt(i) + " ");
 		}
 		
-		System.out.println("");
+		char tab[] = new char[data.length()];
 		
+		System.out.println("");
 		for (int ii=0; ii<=data.length()-1;ii++)
 		{
 			tab[ii] = data.charAt(ii);
@@ -49,4 +57,12 @@ public class LectureFichier
 		in.close();
 	}
 	
+	
+	public void ecritureFichier(FileWriter out) throws IOException
+	{
+		out = new FileWriter("test.txt");
+		
+		out.write("Abdelrahmane et Java ca fait 1");
+		out.close();
+	}
 }
