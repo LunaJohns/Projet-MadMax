@@ -1,23 +1,18 @@
 package main;
 
-import controlleur.Controlleur_connexion;
-import controlleur.Controlleur_decryptage;
-import vue.Vue_Decryptage;
+import controleur.Controleur_connexion;
+import controleur.Controleur_decryptage;
 
 public class Main 
 {
 	public static void main(String[] args) 
 	{
 		
-		Vue_Decryptage decrypt = new Vue_Decryptage();
-		
 		//Controleur_connexion controleurConnexion = new Controleur_connexion();
 		//controleurConnexion.lancementConnexion();
 		
-	//	Controlleur_decryptage controlleurDecryptage = new Controlleur_decryptage();
-	//	controlleurDecryptage.lancementDecryptage();
-		
-		
+		Controleur_decryptage controleurDecryptage = new Controleur_decryptage();
+		controleurDecryptage.lancementDecryptage();
 		
 	}
 }

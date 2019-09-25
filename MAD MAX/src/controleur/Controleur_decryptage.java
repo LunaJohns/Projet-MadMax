@@ -1,11 +1,11 @@
-package controlleur;
+package controleur;
 
 import model.CAD;
 import model.Decryptage;
 import model.MapDictionnaire;
 
 
-public class Controlleur_decryptage 
+public class Controleur_decryptage 
 {
 
 	public void lancementDecryptage()
