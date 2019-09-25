@@ -40,7 +40,7 @@ public class Vue_Connexion {
 	     label5.setBounds(180,100,1000,175); 
 	     
 	     JLabel label6=new JLabel("Password:"); 
-	     label6.setBounds(380,350, 80,30); 
+	     label6.setBounds(380,500, 1000,50);  
 	     
 	     JButton b = new JButton("Login");  
 	     b.setBounds(570,400, 80,30);
