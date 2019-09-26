@@ -45,6 +45,11 @@ public class Vue_Connexion {
 	     label5.setForeground(new Color(100, 0, 0));
 	     label5.setBounds(50,0,1000,175); 
 	     
+	     JLabel label6 = new JLabel("AUTHENTIFICATION FAILED!!!");
+	     label6.setBounds(250,150,300,30);
+	     label6.setVisible(false);
+	     
+	     
 	     JButton b = new JButton("Login");  
 	     b.setBounds(280,300, 80,30);
 	     
@@ -53,6 +58,7 @@ public class Vue_Connexion {
 	     f.add(label2); 
 	     f.add(label4); 
 	     f.add(label5);
+	     f.add(label6); 
 	     
 	     f.add(b); 
 	     f.add(text);  
@@ -69,21 +75,22 @@ public class Vue_Connexion {
 				Set_Id(text.getText());
 				Set_Pwd(new String(value.getPassword()));
 				String requete = controleurMain.model.mappersonne.requeteVerifierUtilisateur(id, pwd);
-					
+				
 				if (etatConnexion == true)
 				{
 					int occurence = controleurMain.model.cad.executerRequete(requete);
 					if (occurence > 0)
 					{
-						System.out.println("Hey!!");
 						controleurMain.controleurConnexion.lancementConnexion(controleurMain.controleurDecryptage);
 						f.dispose();
-					}
-					controleurMain.model.cad.Fermeture();
+					}else { 
+						label6.setVisible(true);
 				}
-				
+					controleurMain.model.cad.Fermeture();
+				}				
 		     } 
 	     });
+	     
 	    Fermeture(f); 
 	}
 	public void Fermeture(JFrame f) {
