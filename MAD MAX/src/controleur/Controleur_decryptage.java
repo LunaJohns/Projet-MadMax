@@ -9,7 +9,7 @@ import model.Model;
 
 public class Controleur_decryptage
 {
-	Model model;
+	public Model model;
 	
 	public Controleur_decryptage(Model model)
 	{

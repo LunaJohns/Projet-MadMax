@@ -12,20 +12,17 @@ import javax.swing.JFrame;
 
 public class ManipulationFichier
 {
-	String data = new String();
+	public String data = new String();
+	public String fichierLecture;
+	public String fichierEcriture;
 	
 	public String lectureFichier() throws IOException
 	{
 		BufferedReader in = null;
-		File f = new File(data);
-		int i;
-		
-		//System.out.println(f.getAbsolutePath());
-		//System.out.println();
-		
+	
 		try
 		{
-			in = new BufferedReader(new FileReader("test1.txt"));
+			in = new BufferedReader(new FileReader(fichierLecture));
 		}
 		catch (FileNotFoundException e)
 		{
@@ -41,20 +38,12 @@ public class ManipulationFichier
 			e.printStackTrace();
 		}
 		
-		//System.out.println (data);
-		
-		for(i=0;i<=data.length()-1;i++)
-		{
-			//System.out.print(data.charAt(i) + " ");
-		}
 		
 		char tab[] = new char[data.length()];
 		
-		//System.out.println("");
 		for (int ii=0; ii<=data.length()-1;ii++)
 		{
 			tab[ii] = data.charAt(ii);
-			//System.out.print(tab[ii] + " ");
 		}
 		
 		
@@ -66,7 +55,7 @@ public class ManipulationFichier
 	public void ecritureFichier(String textDecrypte) throws IOException
 	{
 		
-		FileWriter out = new FileWriter("test2.txt");
+		FileWriter out = new FileWriter(fichierEcriture);
 		
 		out.write(textDecrypte);
 		out.close();

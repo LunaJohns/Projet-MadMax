@@ -8,13 +8,16 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.*;
+import java.io.File;
 import java.io.IOException;  
 
 //PAGE DECRYPTAGE
 
-public class Vue_Decryptage { 
-	
+public class Vue_Decryptage 
+{ 
+	String path = new String();
 	public Vue_Decryptage(Controleur_decryptage controleurDecryptage) {
+		
 		JFrame f=new JFrame("Page de decryptage");    
 		
 		JPanel panel = new JPanel(); 
@@ -61,7 +64,6 @@ public class Vue_Decryptage {
 	     f.setSize(600, 400);    
 	     f.setLayout(null);    
 	     f.setVisible(true);
-	      
 	     
 	     b.addActionListener(new ActionListener() 
 	     {  
@@ -77,19 +79,49 @@ public class Vue_Decryptage {
 	     });
 	     
 	     c.addActionListener(new ActionListener() 
-	     {  
-		     public void actionPerformed(ActionEvent e) 
-		     {       
-		    	System.out.print("chemin crypté");     
-		     } 
-	     });
+         {
+             public void actionPerformed(ActionEvent e) 
+             {
+                     JFileChooser fc = new JFileChooser();
+                     fc.setCurrentDirectory(new File("/User"));
+
+                     int result = fc.showOpenDialog(new JFrame());
+
+                     if (result == JFileChooser.APPROVE_OPTION)
+                     {
+                         File selectedFile = fc.getSelectedFile();
+
+                         path = selectedFile.getAbsolutePath();
+                     }
+
+                    text.setText(path);
+                    controleurDecryptage.model.manipulationfichier.fichierLecture = path;
+
+              }
+
+         });
 	     
 	     d.addActionListener(new ActionListener() 
-	     {  
-		     public void actionPerformed(ActionEvent e) 
-		     {       
-		    	 System.out.print("chemin crypté");        
-		     } 
-	     });
+         {
+             public void actionPerformed(ActionEvent e) 
+             {
+                     JFileChooser fc = new JFileChooser();
+                     fc.setCurrentDirectory(new File("/User"));
+
+                     int result = fc.showOpenDialog(new JFrame());
+
+                     if (result == JFileChooser.APPROVE_OPTION)
+                     {
+                         File selectedFile = fc.getSelectedFile();
+
+                         path = selectedFile.getAbsolutePath();
+                     }
+
+                    textfin.setText(path);
+                    controleurDecryptage.model.manipulationfichier.fichierEcriture = path;
+
+              }
+
+         });
 	}
 } 
