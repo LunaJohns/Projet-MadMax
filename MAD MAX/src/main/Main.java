@@ -1,18 +1,20 @@
 package main;
 
-import controleur.Controleur_connexion;
-import controleur.Controleur_decryptage;
+import controleur.Controleur_main;
+import model.Model;
+import vue.Vue;
 
 public class Main 
 {
 	public static void main(String[] args) 
 	{
 		
-		//Controleur_connexion controleurConnexion = new Controleur_connexion();
-		//controleurConnexion.lancementConnexion();
+		Model model = new Model();
 		
-		Controleur_decryptage controleurDecryptage = new Controleur_decryptage();
-		controleurDecryptage.lancementDecryptage();
+		Controleur_main Controleur = new Controleur_main(model);
+		
+		Vue vue = new Vue(Controleur);
+		
 		
 	}
 }

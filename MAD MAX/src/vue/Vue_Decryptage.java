@@ -39,10 +39,10 @@ public class Vue_Decryptage {
 	     JButton b = new JButton("Decrypter");  
 	     b.setBounds(390,300, 180,40);
 	      
-	     JButton c = new JButton("Choisir fichier crypte");  
+	     JButton c = new JButton("Chemin fichier crypté");  
 	     c.setBounds(10,300, 180,40);
 	     
-	     JButton d = new JButton("Choisir fichier destination");  
+	     JButton d = new JButton("Chemin fichier destination");  
 	     d.setBounds(200,300, 180,40);
 	     
 	     f.add(label3);  

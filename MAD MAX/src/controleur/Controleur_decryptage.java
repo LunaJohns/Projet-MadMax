@@ -5,8 +5,14 @@ import model.Decryptage;
 import model.MapDictionnaire;
 
 
+
+
 public class Controleur_decryptage 
 {
+	public Controleur_decryptage()
+	{
+		
+	}
 
 	public void lancementDecryptage()
 	{
@@ -29,7 +35,6 @@ public class Controleur_decryptage
 		}
 
 		//String messageDecrypte = decryptage.decrypterCaractere(decryptage.getCle() , "salim bonjour salim");
-		
 		
 	}
 

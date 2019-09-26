@@ -1,6 +1,10 @@
 package vue;
 
 import javax.swing.*;
+
+import controleur.Controleur_decryptage;
+import controleur.Controleur_main;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -8,9 +12,9 @@ import java.awt.event.*;
 
 public class Vue_Connexion { 
 	
-	private String id, pwd; 
+	private String id, pwd;
 	
-	public Vue_Connexion() {
+	public Vue_Connexion(Controleur_main controleurMain) {
 		JFrame f=new JFrame("CONNEXION");    
 		
 		JPanel panel = new JPanel(); 
@@ -42,7 +46,6 @@ public class Vue_Connexion {
 	     JButton b = new JButton("Login");  
 	     b.setBounds(280,300, 80,30);
 	     
-	     
 	     f.add(value); 
 	     f.add(label3); 
 	     f.add(label2); 
@@ -59,9 +62,25 @@ public class Vue_Connexion {
 	     {  
 		     public void actionPerformed(ActionEvent e) 
 		     {       
-			     String data = "Username " + text.getText();  
-			     data += ", Password: " + new String(value.getPassword());   
-			     label2.setText(data);          
+		    	
+				boolean etatConnexion = controleurMain.model.cad.Connexion();
+				Set_Id(text.getText());
+				Set_Pwd(new String(value.getPassword()));
+				String requete = controleurMain.model.mappersonne.requeteVerifierUtilisateur(id, pwd);
+					
+				if (etatConnexion == true)
+				{
+					int occurence = controleurMain.model.cad.executerRequete(requete);
+					System.out.println(id);
+					System.out.println(pwd);
+					if (occurence > 0)
+					{
+						System.out.println("hehe sa fonctionne");
+						controleurMain.controleurConnexion.lancementConnexion();
+					}
+					controleurMain.model.cad.Fermeture();
+				}
+				
 		     } 
 	     });
 	}
@@ -76,7 +95,6 @@ public class Vue_Connexion {
 	public String Get_Id() {
 		return this.id; 
 	}
-	
 	
 	public String Get_Pwd() {
 		return this.pwd; 
