@@ -31,7 +31,7 @@ public class Vue_Decryptage {
 	     JLabel label4=new JLabel("votre texte decrypte:"); 
 	     label4.setBounds(20,200, 120,30); 
 
-	     JLabel label5 = new JLabel("Page de d�cryptage: "); 
+	     JLabel label5 = new JLabel("Page de decryptage: "); 
 	     label5.setFont(new Font("Georgia", Font.PLAIN, 60));
 	     label5.setForeground(new Color(100, 0, 0));
 	     label5.setBounds(20,-50,1000,175); 

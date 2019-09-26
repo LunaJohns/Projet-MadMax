@@ -3,49 +3,54 @@ package model;
 public class Decryptage 
 {
 	
-	private int[] Cle;
+	private int[] Cle = {97,119,113,112,97,97,97,97,97,97,97,97};
 	private Boolean cleTrouve = false;
 	
 	public Decryptage()
 	{
-		Cle = new int[4];
-		
-		for (int i = 0; i < Cle.length; i++) 
-		{
-
-			Cle[i] = 97;
-		}
 		
 	}
 	
-	public void genererListeCle(int index, String chaineCryptee, MapDictionnaire Map_dic, CAD cad)
+	//On gènre toutes les clés possibles et on test jusqu'a trouver la bonne
+	public void processusDecryptage(int index, String chaineCryptee, MapDictionnaire Map_dic, CAD cad)
 	{
 		if (index < Cle.length && cleTrouve != true)
 		{
-			for (int x = 97; x <= 122;x++)
+			for (int x = 97; x <= 122 && cleTrouve != true;x++)
 			{
 				
 				Cle[index] = x;
+				//Permet de suivre la progression du decryptage
+				toString(Cle);
 				
 				String chaineDecrypter = decrypterCaractere(Cle,chaineCryptee);
+				String chaineDecrypterDecouper[] = chaineDecrypter.split(" ");
+				
+				String requete = "";
+				int occurranceTrouve = 0;
 				
 				//Verification
-				String requete = Map_dic.requeteVerifierMot(chaineDecrypter);
-				boolean occurranceTrouve = cad.executerRequete(requete);
+				for (int i = 0;i < chaineDecrypterDecouper.length;i++)
+				{
+					chaineDecrypterDecouper[i] = chaineDecrypterDecouper[i].replaceAll("\"", "\\\\\"");
+					requete = Map_dic.requeteVerifierMot(chaineDecrypterDecouper[i]);
+					occurranceTrouve += cad.executerRequete(requete);
+				}
 				
-				if (occurranceTrouve == true)
+				if (occurranceTrouve == chaineDecrypterDecouper.length)
 				{
 					System.out.print("Clé trouvé : ");
 					toString(Cle);
 					cleTrouve = true;
 				}
-				genererListeCle(index + 1,chaineCryptee, Map_dic, cad);
+				processusDecryptage(index + 1,chaineCryptee, Map_dic, cad);
 				
 			}
 		}
 
 	}
 	
+	//Decryptage-Cryptage Xor avec des bits
 	public String decrypterBinaire(int [] CleDecimal, String chaineCrypter)
 	{
 		int i = 0;
@@ -145,6 +150,7 @@ public class Decryptage
 		
 	}
 	
+	//Decryptage-Cryptage Xor avec des caractères
 	public String decrypterCaractere(int [] cleDecimal,String chaineCrypter) {
 		String chaineDecrypter = "";
 		char tmp;
@@ -156,6 +162,7 @@ public class Decryptage
 		return chaineDecrypter;
 	}
 	
+	//Permet d'afficher la clé (avec des caractères)
 	public void toString(int[] tab) 
 	{
 
@@ -172,5 +179,10 @@ public class Decryptage
 		System.out.println(output);
 		
 	}
+
+	public int[] getCle() {
+		return Cle;
+	}
+
 	
 }

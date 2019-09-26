@@ -20,7 +20,7 @@ public class CAD
 	private Statement statement;
 	private ResultSet resultat;
 	private boolean etatConnexion;
-	private boolean occurranceTrouve = false;
+	private int nombreOccurance;
 	
 	
 	public boolean Connexion()
@@ -53,7 +53,7 @@ public class CAD
         }
 	}
 	
-	public boolean executerRequete(String requete)
+	public int executerRequete(String requete)
 	{
 		try 
 		{
@@ -63,12 +63,8 @@ public class CAD
 		    
 		    while (resultat.next())
 		    {
-		    	int nombreOccurance = resultat.getInt("COUNT(*)");
-		    	if (nombreOccurance > 0)
-		    	{
-		    		occurranceTrouve = true;
-		    	}
-		    	
+		    	nombreOccurance = resultat.getInt("COUNT(*)");
+			
 		    }
 		    
 		} 
@@ -76,7 +72,7 @@ public class CAD
 		{
 			System.out.println("Impossible d'executer le requete, message d'erreur : " + e);
 		}
-		return occurranceTrouve;
+		return nombreOccurance;
 		
 	}
 	
