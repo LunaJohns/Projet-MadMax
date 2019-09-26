@@ -2,19 +2,21 @@ package vue;
 
 import javax.swing.*;
 
-import controleur.Controleur_decryptage;
 import controleur.Controleur_main;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.*;  
+import java.awt.event.*;
+import java.awt.event.WindowListener;
 
 public class Vue_Connexion { 
 	
 	private String id, pwd;
 	
 	public Vue_Connexion(Controleur_main controleurMain) {
+		
+		 
 		JFrame f=new JFrame("CONNEXION");    
 		
 		JPanel panel = new JPanel(); 
@@ -71,19 +73,36 @@ public class Vue_Connexion {
 				if (etatConnexion == true)
 				{
 					int occurence = controleurMain.model.cad.executerRequete(requete);
-					System.out.println(id);
-					System.out.println(pwd);
 					if (occurence > 0)
 					{
-						System.out.println("hehe sa fonctionne");
-						controleurMain.controleurConnexion.lancementConnexion();
+						
+						controleurMain.controleurConnexion.lancementConnexion(controleurMain.controleurDecryptage);
+
+						
 					}
 					controleurMain.model.cad.Fermeture();
 				}
 				
 		     } 
 	     });
+	     
 	}
+	
+	public void fermeture(JFrame f) {
+		WindowListener listener = new WindowAdapter() {
+
+	        @Override
+
+	        public void windowClosing(WindowEvent w) {
+
+	           f.dispose();
+
+	        }
+	    };
+	    f.addWindowListener(listener);
+	}
+	
+	
 	
 	public void Set_Id(String id) {
 		this.id = id; 

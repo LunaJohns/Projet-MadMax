@@ -1,16 +1,20 @@
 package vue;
 
 import javax.swing.*;
+
+import controleur.Controleur_decryptage;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.*;  
+import java.awt.event.*;
+import java.io.IOException;  
 
 //PAGE DECRYPTAGE
 
 public class Vue_Decryptage { 
 	
-	public Vue_Decryptage() {
+	public Vue_Decryptage(Controleur_decryptage controleurDecryptage) {
 		JFrame f=new JFrame("Page de decryptage");    
 		
 		JPanel panel = new JPanel(); 
@@ -63,12 +67,29 @@ public class Vue_Decryptage {
 	     {  
 		     public void actionPerformed(ActionEvent e) 
 		     {       
-			     String data = "Texte decrypte:" + text.getText();     
-			     label4.setText(data);          
+		    	 try {
+					controleurDecryptage.lancementDecryptage();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}         
+		     } 
+	     });
+	     
+	     c.addActionListener(new ActionListener() 
+	     {  
+		     public void actionPerformed(ActionEvent e) 
+		     {       
+		    	System.out.print("chemin crypté");     
+		     } 
+	     });
+	     
+	     d.addActionListener(new ActionListener() 
+	     {  
+		     public void actionPerformed(ActionEvent e) 
+		     {       
+		    	 System.out.print("chemin crypté");        
 		     } 
 	     });
 	}
-	public static void main(String [] args) {
-		new Vue_Decryptage();
-	};
 } 

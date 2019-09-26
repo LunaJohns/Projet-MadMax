@@ -1,12 +1,14 @@
 package main;
 
+import java.io.IOException;
+
 import controleur.Controleur_main;
 import model.Model;
 import vue.Vue;
 
 public class Main 
 {
-	public static void main(String[] args) 
+	public static void main(String[] args) throws IOException 
 	{
 		
 		Model model = new Model();

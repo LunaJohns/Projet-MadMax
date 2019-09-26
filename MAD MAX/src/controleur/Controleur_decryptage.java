@@ -1,40 +1,36 @@
 package controleur;
 
-import model.CAD;
-import model.Decryptage;
-import model.MapDictionnaire;
+import java.io.IOException;
+
+import model.Model;
 
 
 
 
-public class Controleur_decryptage 
+public class Controleur_decryptage
 {
-	public Controleur_decryptage()
+	Model model;
+	
+	public Controleur_decryptage(Model model)
 	{
-		
+		this.model = model;
 	}
 
-	public void lancementDecryptage()
+	public void lancementDecryptage() throws IOException
 	{
-		//Initialisation des composants
-		CAD cad = new CAD();
-		MapDictionnaire Map_dic = new MapDictionnaire();
-		Decryptage decryptage = new Decryptage();
-		
-		//Test cryptage
-		int cleTest[] = {97,119,113,112,97,97,97,97,97,97,97,97};
-		String test = decryptage.decrypterCaractere(cleTest , "salim bonjour salim");
+		String test = model.manipulationfichier.lectureFichier();
 		
 		//Connexion
-		boolean etatConnexion = cad.Connexion();
+		boolean etatConnexion = model.cad.Connexion();
 		
 		if (etatConnexion == true)
 		{
-			decryptage.processusDecryptage(8,test, Map_dic, cad);
-			cad.Fermeture();
+			model.decryptage.processusDecryptage(8,test, model.mapdictionnaire, model.cad);
+			model.cad.Fermeture();
 		}
 
-		//String messageDecrypte = decryptage.decrypterCaractere(decryptage.getCle() , "salim bonjour salim");
+		String messageDecrypte = model.decryptage.decrypterCaractere(model.decryptage.getCle() , test);
+		model.manipulationfichier.ecritureFichier(messageDecrypte);
 		
 	}
 
