@@ -9,7 +9,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.*;
-import java.awt.event.WindowListener;
 
 public class Vue_Connexion { 
 	
@@ -85,9 +84,21 @@ public class Vue_Connexion {
 				
 		     } 
 	     });
-	     
+	    Fermeture(f); 
 	}
-	
+	public void Fermeture(JFrame f) {
+		WindowListener listener = new WindowAdapter() {
+			 
+			 @Override
+			  
+			 public void windowClosing(WindowEvent w) {
+			  
+			     System.exit(0);
+			  
+			 }
+		 };
+		f.addWindowListener(listener);
+	}
 	public void Set_Id(String id) {
 		this.id = id; 
 	}
