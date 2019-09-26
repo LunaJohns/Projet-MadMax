@@ -3,6 +3,7 @@ package vue;
 import javax.swing.*;
 
 import controleur.Controleur_main;
+import controleur.Controleur_decryptage;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -75,10 +76,9 @@ public class Vue_Connexion {
 					int occurence = controleurMain.model.cad.executerRequete(requete);
 					if (occurence > 0)
 					{
-						
+						System.out.println("Hey!!");
 						controleurMain.controleurConnexion.lancementConnexion(controleurMain.controleurDecryptage);
-
-						
+						f.dispose();
 					}
 					controleurMain.model.cad.Fermeture();
 				}
@@ -87,22 +87,6 @@ public class Vue_Connexion {
 	     });
 	     
 	}
-	
-	public void fermeture(JFrame f) {
-		WindowListener listener = new WindowAdapter() {
-
-	        @Override
-
-	        public void windowClosing(WindowEvent w) {
-
-	           f.dispose();
-
-	        }
-	    };
-	    f.addWindowListener(listener);
-	}
-	
-	
 	
 	public void Set_Id(String id) {
 		this.id = id; 

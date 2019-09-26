@@ -119,9 +119,23 @@ public class Vue_Decryptage
 
                     textfin.setText(path);
                     controleurDecryptage.model.manipulationfichier.fichierEcriture = path;
-
+           	     	
               }
 
          });
+	     Fermeture(f);
+	}
+	public void Fermeture(JFrame f) {
+		WindowListener listener = new WindowAdapter() {
+			 
+			 @Override
+			  
+			 public void windowClosing(WindowEvent w) {
+			  
+			     System.exit(0);
+			  
+			 }
+		 };
+		f.addWindowListener(listener);
 	}
 } 
