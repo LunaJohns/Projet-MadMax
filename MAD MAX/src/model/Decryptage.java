@@ -20,11 +20,24 @@ public class Decryptage
 			{
 				
 				Cle[index] = x;
-				//Permet de suivre la progression du decryptage
-				toString(Cle);
 				
 				String chaineDecrypter = decrypterCaractere(Cle,chaineCryptee);
-				String chaineDecrypterDecouper[] = chaineDecrypter.split(" ");
+				chaineDecrypter = chaineDecrypter.replaceAll("[\"\\.\\,\\?\\!\\:\\;]", "");
+				chaineDecrypter = chaineDecrypter.trim();
+				String chaineDecrypterDecouper[] = chaineDecrypter.split("[ ]+");
+				
+				
+				if (Cle[8] == 103 && Cle[9] == 116 && Cle[10] == 101 && Cle[11] == 106)
+				{
+					for (int j = 0;j < chaineDecrypterDecouper.length;j++) {
+						System.out.println(chaineDecrypterDecouper[j]);
+						System.out.println(j);
+					}
+				}
+				
+				//Permet de suivre la progression du decryptage
+				toString(Cle);
+				//System.out.println(chaineDecrypter);
 				
 				String requete = "";
 				int occurranceTrouve = 0;
@@ -32,11 +45,11 @@ public class Decryptage
 				//Verification
 				for (int i = 0;i < chaineDecrypterDecouper.length;i++)
 				{
-					chaineDecrypterDecouper[i] = chaineDecrypterDecouper[i].replaceAll("\"", "\\\\\"");
 					requete = Map_dic.requeteVerifierMot(chaineDecrypterDecouper[i]);
 					occurranceTrouve += cad.executerRequete(requete);
 				}
 				
+				//System.out.println(occurranceTrouve);
 				if (occurranceTrouve == chaineDecrypterDecouper.length)
 				{
 					System.out.print("Clé trouvé : ");

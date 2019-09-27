@@ -1,11 +1,15 @@
 package model;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -18,37 +22,7 @@ public class ManipulationFichier
 	
 	public String lectureFichier() throws IOException
 	{
-		BufferedReader in = null;
-	
-		try
-		{
-			in = new BufferedReader(new FileReader(fichierLecture));
-		}
-		catch (FileNotFoundException e)
-		{
-			e.printStackTrace();
-		}
-		
-		try
-		{
-			data = in.readLine();
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-		
-		
-		char tab[] = new char[data.length()];
-		
-		for (int ii=0; ii<=data.length()-1;ii++)
-		{
-			tab[ii] = data.charAt(ii);
-		}
-		
-		
-		in.close();
-		return data;
+		return new String(Files.readAllBytes(Paths.get(fichierLecture)));
 	}
 	
 	
